@@ -8,4 +8,8 @@ class UrlShortenerService {
     fun shortenUrl(): String {
         return "url"
     }
+
+    fun isUrlValid(): Boolean {
+        return false;
+    }
 }
