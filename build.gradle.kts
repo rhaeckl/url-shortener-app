@@ -21,6 +21,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("commons-validator:commons-validator:1.7")
 	runtimeOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

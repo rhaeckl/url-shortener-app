@@ -1,5 +1,6 @@
 package com.dkbcodefactory.urlshortener.service
 
+import org.apache.commons.validator.routines.UrlValidator
 import org.springframework.stereotype.Service
 
 @Service
@@ -9,7 +10,8 @@ class UrlShortenerService {
         return "url"
     }
 
-    fun isUrlValid(): Boolean {
-        return false;
+    fun isUrlValid(url: String): Boolean {
+        val validator = UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES)
+        return validator.isValid(url)
     }
 }
