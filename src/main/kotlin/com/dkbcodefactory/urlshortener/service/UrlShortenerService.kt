@@ -11,7 +11,6 @@ class UrlShortenerService {
     }
 
     fun isUrlValid(url: String): Boolean {
-        val validator = UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES)
-        return validator.isValid(url)
+        return UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES).isValid(url)
     }
 }
