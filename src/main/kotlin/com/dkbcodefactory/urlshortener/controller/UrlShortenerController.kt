@@ -1,19 +1,22 @@
 package com.dkbcodefactory.urlshortener.controller
 
-import com.dkbcodefactory.urlshortener.exception.InvalidUrlException
 import com.dkbcodefactory.urlshortener.service.UrlShortenerService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/")
 class UrlShortenerController(val service: UrlShortenerService) {
 
-    @GetMapping("/shorten-url")
+    @PostMapping("/shorten-url")
     fun shortenUrl(@RequestParam url: String): String {
-        if (!service.isUrlValid(url)) {
-            throw InvalidUrlException()
-        }
-        return service.shortenUrl()
+        service.validateUrl(url)
+        val urlInfo = service.shortenUrl(url)
+        service.saveUrls(urlInfo)
+        return urlInfo.shortUrl;
     }
 
+    @GetMapping("/resolve")
+    fun resolveUrl(@RequestParam url: String): String {
+        return service.findOriginUrl(url) ?: ""
+    }
 }

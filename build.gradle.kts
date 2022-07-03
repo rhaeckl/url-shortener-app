@@ -22,6 +22,10 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("commons-validator:commons-validator:1.7")
+	implementation("com.google.guava:guava:31.1-jre")
+	implementation("org.springframework.data:spring-data-keyvalue:2.7.1")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:2.7.1")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
 	runtimeOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
