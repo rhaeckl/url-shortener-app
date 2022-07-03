@@ -5,13 +5,17 @@ import com.dkbcodefactory.urlshortener.exception.InvalidUrlException
 import com.dkbcodefactory.urlshortener.repository.UrlRepository
 import com.google.common.hash.Hashing
 import org.apache.commons.validator.routines.UrlValidator
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.nio.charset.StandardCharsets
+import java.util.logging.Logger
 
 @Service
 class UrlShortenerService @Autowired constructor(val repository: UrlRepository) {
+
+    private val log = LoggerFactory.getLogger(this.javaClass)
 
     @Value("\${base_url}")
     lateinit var baseUrl: String;
@@ -24,6 +28,7 @@ class UrlShortenerService @Autowired constructor(val repository: UrlRepository) 
 
     fun saveUrls(urlInfo: UrlInfo) {
         repository.save(urlInfo)
+        log.info(String.format("Short URL %s with Long URL %s has been saved ...", urlInfo.shortUrl, urlInfo.originUrl))
     }
 
     fun findOriginUrl(url: String): String? {
